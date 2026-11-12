@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Michigan Money Saver — Professional Classifieds</title>
+<title>Michigan Money Saver — Professional Classifieds | "Linked in Local"</title>
+<meta name="description" content="Michigan Money Saver — professional classifieds for northern Michigan trades, services, and business. Business blocks for one flat monthly price, and a barter floor for trading work. Linked in Local.">
+<link rel="canonical" href="https://michiganmoneysaver.pro/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Michigan Money Saver — Professional Classifieds | &quot;Linked in Local&quot;">
+<meta property="og:description" content="Michigan Money Saver — professional classifieds for northern Michigan trades, services, and business. Business blocks for one flat monthly price, and a barter floor for trading work. Linked in Local.">
+<meta property="og:url" content="https://michiganmoneysaver.pro/">
 <style>
   :root {
     --white: #FFFFFF;
@@ -12,180 +18,241 @@
     --black: #111111;
     --gray-text: #3d3d3d;
     --gray-border: #e3e3e3;
-    --gray-bg: #f6f6f6;
   }
 
-  * {
-    box-sizing: border-box;
-  }
+  * { box-sizing: border-box; }
 
   body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: var(--white);
+    background: #0b0b0d;
     color: var(--black);
     line-height: 1.5;
+    /* Bottom no-fly zone: nothing actionable lives in the lowest band. */
+    padding-bottom: 150px;
   }
 
-  .wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 24px 16px 48px 16px;
+  /* ---- Hero graphic background (the flavor map, every Apex site) ---- */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(1100px 520px at 85% -10%, rgba(200,16,46,.50), rgba(200,16,46,0) 60%),
+      radial-gradient(900px 620px at -12% 108%, rgba(200,16,46,.26), rgba(200,16,46,0) 55%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,.045) 0 2px, rgba(255,255,255,0) 2px 14px),
+      linear-gradient(160deg, #17171a 0%, #0b0b0d 55%, #131315 100%);
+  }
+  /* Fixed hairline frame over the hero, detail around the edge of the glass. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 10px;
+    z-index: 0;
+    pointer-events: none;
+    border: 1px solid rgba(255,255,255,.13);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.35);
+  }
+
+  /* ---- The framed glass sheet ---- */
+  .sheet {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 26px auto 0 auto;
+    padding: 28px 20px 36px 20px;
+    background: linear-gradient(165deg, rgba(255,255,255,.94), rgba(255,255,255,.87));
+    -webkit-backdrop-filter: blur(14px) saturate(1.15);
+    backdrop-filter: blur(14px) saturate(1.15);
+    border: 1px solid rgba(255,255,255,.7);
+    box-shadow:
+      0 0 0 1px rgba(200,16,46,.55),
+      0 0 0 6px rgba(10,10,10,.85),
+      0 0 0 7px rgba(255,255,255,.28),
+      0 30px 60px rgba(0,0,0,.55);
+  }
+  /* Corner detail on the frame. */
+  .sheet::before, .sheet::after {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border: 3px solid var(--crimson);
+  }
+  .sheet::before { top: -10px; left: -10px; border-right: none; border-bottom: none; }
+  .sheet::after { bottom: -10px; right: -10px; border-left: none; border-top: none; }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .sheet { background: #f4f4f4; }
+    .glass { background: #ffffff; }
+    .glass-dark { background: #161616; }
+    .ad-tile { background: rgba(17,17,17,.92); }
   }
 
   /* ---- Nameplate: the paper's block logo treatment ---- */
-  .nameplate {
-    text-align: center;
-    margin-bottom: 8px;
-  }
-
-  .logo-blocks {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0;
-  }
-
+  .nameplate { text-align: center; margin-bottom: 8px; }
+  .logo-blocks { display: flex; flex-wrap: wrap; justify-content: center; gap: 0; }
   .logo-block {
-    display: inline-block;
-    font-weight: bold;
-    font-size: 2rem;
-    letter-spacing: 0.02em;
-    padding: 10px 18px;
-    line-height: 1.1;
+    display: inline-block; font-weight: bold; font-size: 2rem;
+    letter-spacing: 0.02em; padding: 10px 18px; line-height: 1.1;
   }
-
-  .logo-michigan {
-    background: var(--crimson);
-    color: var(--white);
-  }
-
-  .logo-moneysaver {
-    background: var(--black);
-    color: var(--white);
-  }
-
+  .logo-michigan { background: var(--crimson); color: var(--white); }
+  .logo-moneysaver { background: var(--black); color: var(--white); }
   .tagline {
-    margin-top: 14px;
-    color: var(--crimson);
-    font-size: 0.95rem;
-    font-weight: bold;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
+    margin-top: 14px; color: var(--crimson); font-size: 0.95rem; font-weight: bold;
+    letter-spacing: 0.35em; text-transform: uppercase;
   }
-
-  .rule {
-    border: none;
-    border-top: 3px solid var(--crimson);
-    margin: 20px 0 28px 0;
+  .motto {
+    margin-top: 8px; color: var(--black); font-size: 1.05rem; font-weight: bold;
+    letter-spacing: 0.06em;
   }
+  .rule { border: none; border-top: 3px solid var(--crimson); margin: 20px 0 26px 0; }
 
-  h1 {
-    font-size: 1.6rem;
-    margin: 0 0 12px 0;
-    color: var(--black);
+  h1 { font-size: 1.6rem; margin: 0 0 12px 0; color: var(--black); }
+  h2 { font-size: 1.3rem; margin: 30px 0 10px 0; color: var(--black); }
+  p { color: var(--gray-text); font-size: 1.05rem; margin: 0 0 16px 0; }
+
+  /* ---- Glass panels and boards ---- */
+  .glass {
+    background: rgba(255,255,255,.68);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(17,17,17,.14);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 8px 20px rgba(0,0,0,.10);
+    padding: 16px 18px;
+    margin: 0 0 22px 0;
   }
-
-  p {
-    color: var(--gray-text);
-    font-size: 1.05rem;
-    margin: 0 0 16px 0;
-  }
-
-  .lane-list {
-    background: var(--gray-bg);
-    border: 1px solid var(--gray-border);
-    padding: 16px 20px;
-    margin: 0 0 24px 0;
-  }
-
-  .lane-list p {
-    margin: 0 0 8px 0;
-    font-weight: bold;
-    color: var(--black);
-  }
-
-  .lane-list ul {
-    margin: 0;
-    padding-left: 20px;
-    color: var(--gray-text);
-  }
-
-  .lane-list li {
-    margin-bottom: 4px;
-  }
-
-  .interim {
-    border-left: 4px solid var(--crimson);
-    padding: 4px 0 4px 14px;
-    margin: 0 0 28px 0;
-  }
-
-  .interim p {
-    margin: 0;
-  }
-
-  .board-button {
-    display: inline-block;
-    background: var(--crimson);
+  .glass-dark {
+    background: rgba(17,17,17,.90);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.22);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 10px 24px rgba(0,0,0,.28);
     color: var(--white);
-    font-size: 1.15rem;
-    font-weight: bold;
+    padding: 18px 20px;
+    margin: 0 0 22px 0;
+  }
+  .glass-dark h2 { color: var(--white); margin-top: 0; }
+  .glass-dark p { color: #e8e8e8; }
+  .glass-dark .price-figure { color: var(--white); font-weight: bold; font-size: 1.35rem; }
+  .glass-dark .est { color: #ff8fa0; font-size: 0.9rem; font-weight: bold; }
+
+  .glass p:last-child { margin-bottom: 0; }
+  .lane-list p { margin: 0 0 8px 0; font-weight: bold; color: var(--black); }
+  .lane-list ul { margin: 0; padding-left: 20px; color: var(--gray-text); }
+  .lane-list li { margin-bottom: 4px; }
+
+  /* The sliding board: Instacart-style tiles, but glass. */
+  .rail {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 6px 2px 14px 2px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tile {
+    flex: 0 0 238px;
+    scroll-snap-align: start;
+    background: rgba(255,255,255,.72);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(17,17,17,.14);
+    border-top: 4px solid var(--crimson);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 8px 18px rgba(0,0,0,.12);
+    padding: 14px 16px;
+  }
+  .tile.black-top { border-top-color: var(--black); }
+  .tile h3 { margin: 6px 0 6px 0; font-size: 1.08rem; color: var(--black); }
+  .tile p { font-size: 0.95rem; margin: 0 0 10px 0; }
+  .tile .price { font-weight: bold; font-size: 1.12rem; color: var(--black); margin: 0 0 10px 0; }
+  .tile.empty {
+    border: 1.5px dashed rgba(17,17,17,.35);
+    border-top: 1.5px dashed rgba(17,17,17,.35);
+    background: rgba(255,255,255,.38);
+    box-shadow: none;
+    text-align: center;
+    padding-top: 30px;
+  }
+  .tile.empty .empty-word {
+    display: block; font-weight: bold; letter-spacing: 0.3em;
+    color: rgba(17,17,17,.45); font-size: 0.95rem; margin-bottom: 8px;
+  }
+  .tile.empty p { color: rgba(61,61,61,.75); font-size: 0.9rem; }
+  .badge {
+    display: inline-block; background: var(--crimson); color: var(--white);
+    font-size: 0.7rem; font-weight: bold; letter-spacing: 0.08em; padding: 1px 7px;
+  }
+  .badge.black { background: var(--black); }
+
+  .btn {
+    display: inline-block; background: var(--crimson); color: var(--white);
+    font-size: 1rem; font-weight: bold; text-decoration: none;
+    padding: 11px 20px; border: 2px solid var(--crimson-dark); cursor: pointer;
+  }
+  .btn:hover, .btn:focus { background: var(--crimson-dark); }
+  .btn.dark { background: var(--black); border-color: var(--black); }
+  .btn.dark:hover, .btn.dark:focus { background: #333333; }
+  .btn.small { font-size: 0.92rem; padding: 8px 14px; }
+
+  /* Door cards: the two ways onward from this door. */
+  .doorcards { display: grid; gap: 14px; margin: 0 0 6px 0; }
+  @media (min-width: 640px) { .doorcards { grid-template-columns: 1fr 1fr; } }
+  .doorcard h2 { margin-top: 0; }
+  .doorcard p { margin-bottom: 14px; }
+
+  .interim { border-left: 4px solid var(--crimson); padding: 4px 0 4px 14px; margin: 0 0 26px 0; }
+  .interim p { margin: 0; }
+
+  /* Floating unsold ad slot: translucent glass, standing invitation. */
+  .ad-tile {
+    position: fixed;
+    right: 12px;
+    bottom: 132px;
+    z-index: 60;
+    width: 148px;
+    padding: 12px 10px;
+    background: rgba(17,17,17,.55);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1.5px dashed rgba(255,255,255,.75);
+    outline: 1px dashed rgba(200,16,46,.85);
+    outline-offset: -5px;
+    color: var(--white);
     text-decoration: none;
-    padding: 14px 28px;
-    border: 2px solid var(--crimson-dark);
+    text-align: center;
+    box-shadow: 0 12px 28px rgba(0,0,0,.40);
   }
-
-  .board-button:hover,
-  .board-button:focus {
-    background: var(--crimson-dark);
-  }
-
-  .button-note {
-    font-size: 0.9rem;
-    color: var(--gray-text);
-    margin-top: 10px;
-  }
+  .ad-tile strong { display: block; letter-spacing: 0.14em; font-size: 0.78rem; line-height: 1.5; }
+  .ad-tile span { display: block; font-size: 0.7rem; opacity: 0.85; margin-top: 4px; }
 
   footer {
-    margin-top: 48px;
-    border-top: 1px solid var(--gray-border);
-    padding-top: 14px;
-    font-size: 0.85rem;
-    color: var(--gray-text);
-    text-align: center;
+    margin-top: 40px; border-top: 1px solid rgba(17,17,17,.18); padding-top: 14px;
+    font-size: 0.85rem; color: var(--gray-text); text-align: center;
   }
 
   @media (max-width: 480px) {
-    .logo-block {
-      font-size: 1.45rem;
-      padding: 8px 12px;
-    }
-
-    .tagline {
-      letter-spacing: 0.22em;
-      font-size: 0.85rem;
-    }
-
-    h1 {
-      font-size: 1.35rem;
-    }
-
-    .board-button {
-      display: block;
-      text-align: center;
-    }
+    .sheet { margin-top: 16px; padding: 22px 14px 30px 14px; }
+    .logo-block { font-size: 1.45rem; padding: 8px 12px; }
+    .tagline { letter-spacing: 0.22em; font-size: 0.85rem; }
+    h1 { font-size: 1.35rem; }
+    .tile { flex-basis: 218px; }
+    .btn { display: block; text-align: center; }
+    .tile .btn, .ad-tile { display: block; }
+    .tile .btn { display: inline-block; }
   }
 </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="sheet">
 
     <header class="nameplate">
       <div class="logo-blocks">
         <span class="logo-block logo-michigan">Michigan</span><span class="logo-block logo-moneysaver">MoneySaver</span>
       </div>
       <div class="tagline">Professional Classifieds</div>
+      <div class="motto">"Linked in Local"</div>
     </header>
 
     <hr class="rule">
@@ -199,13 +266,81 @@
         professional classifieds for the folks who do the work around here.
       </p>
 
-      <div class="lane-list">
+      <div class="glass lane-list">
         <p>What belongs in this lane:</p>
         <ul>
           <li>Services offered</li>
           <li>Trades and skilled work</li>
           <li>Business listings</li>
         </ul>
+      </div>
+
+      <h2>Business blocks — the first ones hanging</h2>
+      <p>Whole businesses in one block, sliding on glass. These are real listings; the empty blocks are open.</p>
+      <div class="rail">
+        <div class="tile">
+          <span class="badge">HOUSE LISTING</span>
+          <h3>Apex Ground Crew</h3>
+          <p>Websites built and hung for local business.</p>
+          <p class="price">Websites $375 · Starter $549</p>
+          <a class="btn small" href="https://garagesave-7hz4377a.manus.space">See it on the board</a>
+        </div>
+        <div class="tile">
+          <span class="badge">HOUSE LISTING</span>
+          <h3>Apex Air Solutions</h3>
+          <p>Apex software and services — watch faces, browser guard, signal tools.</p>
+          <p class="price">Watch faces $9.99</p>
+          <a class="btn small" href="https://garagesave-7hz4377a.manus.space">See it on the board</a>
+        </div>
+        <div class="tile black-top">
+          <span class="badge black">FIRST LISTING</span>
+          <h3>Great Lakes Rockhound</h3>
+          <p>Rocks, stones, and lapidary work — Kevin Stockwell.</p>
+          <a class="btn small dark" href="https://greatlakesrockhound.com">greatlakesrockhound.com</a>
+        </div>
+        <div class="tile empty">
+          <span class="empty-word">EMPTY BLOCK</span>
+          <p>Business blocks that get bought hang here.</p>
+        </div>
+        <div class="tile empty">
+          <span class="empty-word">EMPTY BLOCK</span>
+          <p>Business blocks that get bought hang here.</p>
+        </div>
+        <div class="tile empty">
+          <span class="empty-word">EMPTY BLOCK</span>
+          <p>Business blocks that get bought hang here.</p>
+        </div>
+      </div>
+
+      <div class="doorcards">
+        <div class="glass doorcard">
+          <h2>The Classifieds Board</h2>
+          <p>The listings live on the board — professional classifieds, open and running.</p>
+          <a class="btn" href="https://garagesave-7hz4377a.manus.space">Go to the Classifieds Board</a>
+        </div>
+        <div class="glass doorcard">
+          <h2>Trade &amp; Barter — Professional Services</h2>
+          <p>The trade floor on this door. Nothing there is for sale: labor trades for labor, matched by the two people in the thread.</p>
+          <a class="btn dark" href="https://garagesave-7hz4377a.manus.space/barter/services.html">Enter the Services Wing</a>
+        </div>
+      </div>
+
+      <div class="glass-dark" id="costs">
+        <h2>What it costs — plain and simple</h2>
+        <p>
+          A business block: <span class="price-figure">$9.99/month</span> — your whole business in one
+          block: name, picture, description, contact, hours. One flat price for the block,
+          never by the word.
+        </p>
+        <p>
+          The barter floor: membership is <span class="price-figure">$4.99/month</span>
+          <span class="est">(estimate)</span> — one membership covers both barter wings,
+          goods and services alike. Browsing is free forever.
+        </p>
+        <p>
+          Listing on the classifieds board is free. The blocks above are the
+          advertising — a business buying its storefront tile on this door.
+        </p>
       </div>
 
       <div class="interim">
@@ -215,9 +350,6 @@
           running — head on over and take a look.
         </p>
       </div>
-
-      <a class="board-button" href="https://garagesave-7hz4377a.manus.space">Go to the Classifieds Board</a>
-      <p class="button-note">That is where the listings live while this door is being finished.</p>
     </main>
 
     <footer>
@@ -226,6 +358,11 @@
     </footer>
 
   </div>
+
+  <a class="ad-tile" href="#costs">
+    <strong>PLACE YOUR AD HERE</strong>
+    <span>Business blocks, $9.99/month — prices above</span>
+  </a>
 
 <script>
   // Keep the footer year current without any outside help.
